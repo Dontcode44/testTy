@@ -21,9 +21,4 @@ export class AuthController {
   ): Promise<{ accessToken: string }> {
     return await this.authService.loginUser(loginUser);
   }
-
-  @Get()
-  async getAll(): Promise<User[]> {
-    return await this.authService.getAllUsers();
-  }
 }

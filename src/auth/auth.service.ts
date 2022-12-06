@@ -73,8 +73,4 @@ export class AuthService {
     }
     throw new HttpException('Invalid credentials', HttpStatus.UNAUTHORIZED);
   }
-
-  async getAllUsers(): Promise<User[]> {
-    return await this.usersRepository.find();
-  }
 }

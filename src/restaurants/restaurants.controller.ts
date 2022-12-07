@@ -15,8 +15,6 @@ export class RestaurantsController {
     @Userd() userId: string,
     @Query('cityName') cityName: string,
   ): Promise<{ Restaurants: object }> {
-    console.log('userId: ', userId);
-
     return this.restaurantsService.findRestaurantsByCity(userId, cityName);
   }
 }

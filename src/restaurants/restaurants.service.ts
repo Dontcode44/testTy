@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Transaction } from 'src/transactions/entities/transactions-register.entity';
-import { Like, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { Restaurant } from './entities/restaurant.entity';
 
 @Injectable()
@@ -22,8 +22,6 @@ export class RestaurantsService {
     userId: string,
     cityName: string,
   ): Promise<{ Restaurants: object }> {
-
-    const saveUserAndSearch = await this.transactionsRepository.create
     const queryFound = await this.restaurantsRepository
       .createQueryBuilder('restaurant')
       .select(['restaurant.name'])
@@ -31,7 +29,11 @@ export class RestaurantsService {
       .where('city.name = :cityName', { cityName })
       .getMany();
 
-
+      const saveUserAndCity = await this.transactionsRepository.create({
+        savedUserId: userId,
+        savedCityId: cityName,
+      });
+      await this.transactionsRepository.save(saveUserAndCity);
 
     let dict = { queryFound };
     return { Restaurants: dict.queryFound };

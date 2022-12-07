@@ -18,6 +18,11 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
   }
 
+  /**
+   * It takes a JwtPayload object as a parameter, and returns a Promise of an array of User objects
+   * @param {JwtPayload} payload - JwtPayload
+   * @returns The user object
+   */
   async validate(payload: JwtPayload): Promise<User[]> {
     const { email } = payload;
     const user = await this.usersRepository.findBy({ email });

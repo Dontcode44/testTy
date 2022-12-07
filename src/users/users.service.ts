@@ -32,8 +32,4 @@ export class UsersService {
     }
     return queryFound;
   }
-
-  async getRestaurantsFromCity(userId: string, cityName: string) {
-
-  }
 }

@@ -8,6 +8,9 @@ import { RegisterUserDto } from './dto/register-user.dto';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
+  /* A post request to the register endpoint. It is taking in the body of the request and assigning it
+  to the regUser variable. It is returning a promise of an object with an email property. It is
+  calling the registerUser function in the authService and passing in the regUser variable. */
   @Post('register')
   async registerUser(
     @Body() regUser: RegisterUserDto,
@@ -15,6 +18,10 @@ export class AuthController {
     return await this.authService.registerUser(regUser);
   }
 
+  /* A post request to the login endpoint. It is taking in the body of the request and assigning it
+    to the loginUser variable. It is returning a promise of an object with an accessToken property.
+  It is
+    calling the loginUser function in the authService and passing in the loginUser variable. */
   @Post('login')
   async loginUser(
     @Body() loginUser: LoginUserDto,

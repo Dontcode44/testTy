@@ -10,7 +10,7 @@ export class TransactionsController {
 
   @UseGuards(JwtAuthGuard)
   @Get()
-  async getAllTransactions() {
+  async getAllTransactions(): Promise<object> {
     return await this.transactionsService.getAllTransactions();
   }
 }
